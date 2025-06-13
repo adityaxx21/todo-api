@@ -1,104 +1,272 @@
 {
-  "info": {
-    "_postman_id": "b0a5c8a9-0000-4c3a-b111-000000000000",
-    "name": "Laravel Todo API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "API collection for Laravel Todo List CRUD with Excel export."
-  },
-  "item": [
-    {
-      "name": "List Todos",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/todos?status=pending&priority=high",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos"],
-          "query": [
-            {"key": "status", "value": "pending"},
-            {"key": "priority", "value": "high"}
-          ]
-        }
-      }
-    },
-    {
-      "name": "Create Todo",
-      "request": {
-        "method": "POST",
-        "header": [
-          {"key": "Content-Type", "value": "application/json"}
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"title\": \"Finish Laravel API\",\n  \"assignee\": \"Aditya\",\n  \"due_date\": \"2025-06-14\",\n  \"status\": \"pending\",\n  \"priority\": \"high\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/todos",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos"]
-        }
-      }
-    },
-    {
-      "name": "Show Todo",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/todos/1",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos", "1"]
-        }
-      }
-    },
-    {
-      "name": "Update Todo",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {"key": "Content-Type", "value": "application/json"}
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"title\": \"Update title\",\n  \"priority\": \"medium\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/todos/1",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos", "1"]
-        }
-      }
-    },
-    {
-      "name": "Delete Todo",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/todos/1",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos", "1"]
-        }
-      }
-    },
-    {
-      "name": "Export Todos to Excel",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/todos/export?status=pending",
-          "host": ["{{base_url}}"],
-          "path": ["api", "todos", "export"],
-          "query": [
-            {"key": "status", "value": "pending"}
-          ]
-        }
-      }
-    }
-  ],
-  "variable": [
-    {"key": "base_url", "value": "http://localhost:8000"}
-  ]
+	"info": {
+		"_postman_id": "1eacf2b1-d3fc-4556-b0ad-4b83326e69c5",
+		"name": "Laravel Todo API",
+		"description": "API collection for Laravel Todo List CRUD with Excel export.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20236546"
+	},
+	"item": [
+		{
+			"name": "List Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/todos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "",
+							"description": "update titile",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "",
+							"description": "update state",
+							"disabled": true
+						},
+						{
+							"key": "priority",
+							"value": "",
+							"description": "update priority",
+							"disabled": true
+						},
+						{
+							"key": "assignee",
+							"value": "",
+							"description": "update assignee",
+							"disabled": true
+						},
+						{
+							"key": "start",
+							"value": "",
+							"description": "start due_date in range (nullable, would be set if null)",
+							"disabled": true
+						},
+						{
+							"key": "end",
+							"value": "",
+							"description": "end due_date in range (nullable, would be set if null)",
+							"disabled": true
+						},
+						{
+							"key": "min",
+							"value": "",
+							"description": "min time tracked (min and max should be set)",
+							"disabled": true
+						},
+						{
+							"key": "max",
+							"value": "",
+							"description": "max time tracked (min and max should be set)",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Charts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/chart",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"chart"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "status",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"string\",\n    \"assignee\": \"string\",\n    \"due_date\": \"YYYY-MM-DD\",\n    \"status\": \"pending|open|completed|in_progress\",\n    \"priority\": \"low|medium|high\",\n    \"time_tracked\": \"integer\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/todos/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"string\",\n    \"assignee\": \"string\",\n    \"due_date\": \"YYYY-MM-DD\",\n    \"status\": \"pending|open|completed|in_progress\",\n    \"priority\": \"low|medium|high\",\n    \"time_tracked\": \"integer\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todos/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/todos/1123",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"1123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Export Todos to Excel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/todos/export",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"export"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "",
+							"description": "update titile",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "",
+							"description": "update state",
+							"disabled": true
+						},
+						{
+							"key": "priority",
+							"value": "",
+							"description": "update priority",
+							"disabled": true
+						},
+						{
+							"key": "assignee",
+							"value": "",
+							"description": "update assignee",
+							"disabled": true
+						},
+						{
+							"key": "start",
+							"value": "",
+							"description": "start due_date in range (nullable, would be set if null)",
+							"disabled": true
+						},
+						{
+							"key": "end",
+							"value": "",
+							"description": "end due_date in range (nullable, would be set if null)",
+							"disabled": true
+						},
+						{
+							"key": "min",
+							"value": "",
+							"description": "min time tracked (min and max should be set)",
+							"disabled": true
+						},
+						{
+							"key": "max",
+							"value": "",
+							"description": "max time tracked (min and max should be set)",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		}
+	]
 }
