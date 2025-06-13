@@ -1,0 +1,104 @@
+{
+  "info": {
+    "_postman_id": "b0a5c8a9-0000-4c3a-b111-000000000000",
+    "name": "Laravel Todo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "API collection for Laravel Todo List CRUD with Excel export."
+  },
+  "item": [
+    {
+      "name": "List Todos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/todos?status=pending&priority=high",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos"],
+          "query": [
+            {"key": "status", "value": "pending"},
+            {"key": "priority", "value": "high"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Todo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Finish Laravel API\",\n  \"assignee\": \"Aditya\",\n  \"due_date\": \"2025-06-14\",\n  \"status\": \"pending\",\n  \"priority\": \"high\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/todos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos"]
+        }
+      }
+    },
+    {
+      "name": "Show Todo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/todos/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos", "1"]
+        }
+      }
+    },
+    {
+      "name": "Update Todo",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Update title\",\n  \"priority\": \"medium\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/todos/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Todo",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/todos/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos", "1"]
+        }
+      }
+    },
+    {
+      "name": "Export Todos to Excel",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/todos/export?status=pending",
+          "host": ["{{base_url}}"],
+          "path": ["api", "todos", "export"],
+          "query": [
+            {"key": "status", "value": "pending"}
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {"key": "base_url", "value": "http://localhost:8000"}
+  ]
+}
