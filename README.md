@@ -90,7 +90,7 @@ Query Parameters:
 
 1. Clone the repository
 ```bash
-git clone [repository-url]
+git clone [[repository-url]](https://github.com/adityaxx21/todo-api/)
 cd todo-api
 ```
 
