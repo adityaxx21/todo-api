@@ -1,11 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Todo API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful API for managing todo lists with features like date filtering, status tracking, and priority management.
+
+## Features
+
+- CRUD operations for todo items
+- Date range filtering
+- Status tracking (pending, open)
+- Priority levels (low, medium, high)
+- Time tracking
+- Data export functionality
+
+## API Endpoints
+
+### Todo List Management
+
+#### Create Todo
+```http
+POST /api/todos
+```
+Request Body:
+```json
+{
+    "title": "string",
+    "assignee": "string",
+    "due_date": "YYYY-MM-DD",
+    "status": "pending|open",
+    "priority": "low|medium|high",
+    "time_tracked": "integer"
+}
+```
+
+#### Get All Todos
+```http
+GET /api/todos
+```
+Query Parameters:
+- `start`: Start date for filtering
+- `end`: End date for filtering
+- `min`: Minimum time tracked
+- `max`: Maximum time tracked
+
+#### Get Single Todo
+```http
+GET /api/todos/{id}
+```
+
+#### Update Todo
+```http
+PUT /api/todos/{id}
+```
+Request Body:
+```json
+{
+    "title": "string",
+    "assignee": "string",
+    "due_date": "YYYY-MM-DD",
+    "status": "pending|open",
+    "priority": "low|medium|high",
+    "time_tracked": "integer"
+}
+```
+
+#### Delete Todo
+```http
+DELETE /api/todos/{id}
+```
+
+### Data Export
+
+#### Export Todos
+```http
+GET /api/todos/export
+```
+Query Parameters:
+- `start`: Start date for filtering
+- `end`: End date for filtering
+- `min`: Minimum time tracked
+- `max`: Maximum time tracked
+
+## Requirements
+
+- PHP >= 8.0
+- Laravel Framework
+- MySQL Database
+- Composer
+
+## Installation
+
+1. Clone the repository
+```bash
+git clone [repository-url]
+cd todo-api
+```
+
+2. Install dependencies
+```bash
+composer install
+```
+
+3. Copy environment file and configure
+```bash
+cp .env.example .env
+```
+Edit `.env` with your database credentials
+
+4. Generate application key
+```bash
+php artisan key:generate
+```
+
+5. Run database migrations
+```bash
+php artisan migrate
+```
+
+6. Start the development server
+```bash
+php artisan serve
+```
+
+## Usage
+
+The API is ready to use at `http://localhost:8000/api/`
+
+## Error Handling
+
+The API returns standard HTTP status codes:
+- 200: Success
+- 201: Created
+- 400: Bad Request
+- 404: Not Found
+- 500: Internal Server Error
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+MIT License - see LICENSE file
 
 ## About Laravel
 
